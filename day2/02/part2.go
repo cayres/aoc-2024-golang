@@ -47,8 +47,8 @@ func CountSafeReports(input string) int {
 	for _, report := range invalidReports {
 		for i := 0; i < len(report.asc); i++ {
 			dampenedReport := Report{
-				asc:  slice(deepCopy(report.asc), i),
-				desc: slice(deepCopy(report.desc), i),
+				asc:  removeItem(deepCopy(report.asc), i),
+				desc: removeItem(deepCopy(report.desc), i),
 			}
 
 			if isValid(dampenedReport) {
@@ -88,7 +88,7 @@ func isValid(report Report) bool {
 	return true
 }
 
-func slice(arr []int, index int) []int {
+func removeItem(arr []int, index int) []int {
 	return append(arr[:index], arr[index+1:]...)
 }
 
